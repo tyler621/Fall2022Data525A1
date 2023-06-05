@@ -1,0 +1,55 @@
+<?php
+
+$username = "tyler.franzen@undcsmysql";
+$database = "tyler_franzen";
+$password = "tyler8629";
+$host     = "undcsmysql.mysql.database.azure.com";
+$conn     = new mysqli( $host, $username, $password, $database );
+
+if ( $conn->connect_error )
+  die( 'Could not connect: ' . $conn->connect_error );
+
+echo "\n\n";
+echo $PAGE;
+echo "\n\n";
+
+$sql  = "SELECT * from URL LIMIT 200";
+echo($sql);
+$conn->query($sql);
+
+$result = $conn->query( $sql );
+if ( $result->num_rows > 0 )
+  while( $row = $result->fetch_assoc( ) ) {
+    #echo( "</td><td><a target='_blank' href='" . $row[url] . "'>" . $row[url] );
+    echo( "</td><td><a target='_blank' href='" . $row[url] . "'>");
+    #echo( "</a></td><td>" . $row[title] . "</td></tr>" );
+  }
+#echo( "</table>" );
+
+$conn->close( );
+*/
+
+$sql = "SELECT * FROM url";
+$result = $conn->query($sql);
+
+$id = 1;
+if ($result->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo $id . $row["url2"];
+    $id++;
+  }
+} else {
+  echo "0 results";
+}
+$conn->close();
+
+
+
+
+
+
+
+
+
+?>
